@@ -6,12 +6,13 @@ Set stuff up:
 
 ```bash
 npm install
+npm run build
 ```
 
 Run as follows:
 
 ```
-./node_modules/.bin/electron .
+npm run start
 ```
 
 ## Bspwm
