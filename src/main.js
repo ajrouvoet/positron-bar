@@ -1,16 +1,16 @@
 'use strict';
 
-const electron = require('electron');
-const exec = require('child_process').exec;
+import electron from 'electron';
+import { exec } from 'child_process';
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
-var mainWindow = null;
+let mainWindow = null;
 
 // Quit when all windows are closed.
-app.on('window-all-closed', function() {
+app.on('window-all-closed', () => {
   // On OS X it is common for applications and their menu bar
   // to stay active until the user quits explicitly with Cmd + Q
   if (process.platform != 'darwin') {
@@ -20,7 +20,7 @@ app.on('window-all-closed', function() {
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
-app.on('ready', function() {
+app.on('ready', () => {
   // Create the browser window.
   mainWindow = new BrowserWindow({
     width: 1980,
@@ -32,7 +32,7 @@ app.on('ready', function() {
   mainWindow.setPosition(0, 0);
 
   // and load the index.html of the app.
-  mainWindow.loadURL('file://' + __dirname + '/index.html');
+  mainWindow.loadURL('file://' + __dirname + '/static/index.html');
 
   // Open the DevTools.
   mainWindow.webContents.openDevTools();

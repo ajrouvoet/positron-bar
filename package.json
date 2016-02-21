@@ -2,13 +2,22 @@
   "name": "positron-bar",
   "version": "1.0.0",
   "description": "",
-  "main": "main.js",
+  "main": "dist/main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "./node_modules/.bin/electron .",
+    "build": "./node_modules/.bin/babel src -d dist && cp -r src/static/ dist/"
   },
   "author": "A.J. Rouvoet",
   "license": "MIT",
   "devDependencies": {
+    "babel-cli": "^6.5.1",
+    "babel-core": "^6.5.2",
+    "babel-loader": "^6.2.3",
+    "babel-preset-es2015": "^6.5.0",
+    "babel-preset-react": "^6.5.0"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.5.0",
     "electron-prebuilt": "^0.36.8"
   }
 }
