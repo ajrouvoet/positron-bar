@@ -83,7 +83,7 @@ gulp.task('watch', function() {
 
 // copy the assets to the dist
 gulp.task('copy', function() {
-  return gulp.src([path.join(src, 'index.html')], {base: src})
+  return gulp.src([path.join(src, 'index.html'), path.join(src, "main.js")], {base: src})
     .pipe(gulp.dest(dist));
 });
 

@@ -1,5 +1,3 @@
-'use strict';
-
 import electron from 'electron';
 import { exec } from 'child_process';
 const app = electron.app;
@@ -23,7 +21,7 @@ app.on('window-all-closed', () => {
 app.on('ready', () => {
   // Create the browser window.
   mainWindow = new BrowserWindow({
-    width: 1980,
+    width: 1920,
     height: 25,
     frame: false,
     id: "positron-bar",
@@ -32,7 +30,7 @@ app.on('ready', () => {
   mainWindow.setPosition(0, 0);
 
   // and load the index.html of the app.
-  mainWindow.loadURL('file://' + __dirname + '/static/index.html');
+  mainWindow.loadURL('file://' + __dirname + '/index.html');
 
   // Open the DevTools.
   mainWindow.webContents.openDevTools();
