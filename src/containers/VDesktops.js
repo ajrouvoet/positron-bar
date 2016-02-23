@@ -2,6 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import {render} from 'react-dom';
 import {connect} from 'react-redux';
 import _ from 'lodash';
+import cs from 'classnames';
 
 class VDesktops extends Component {
 
@@ -13,8 +14,16 @@ class VDesktops extends Component {
   }
 
   render() {
+    let { active_desktop, desktops } = this.props;
     return (
-      <ol>{ _.map(this.props.desktops, (name) => <li key={name}>{name}</li>) }</ol>
+      <ol>
+        {
+          _.map(desktops, (name) => {
+            let cls = cs({focus: active_desktop == name});
+            return <li className={cls} key={name}>{name}</li>;
+          })
+        }
+      </ol>
     );
   }
 }
