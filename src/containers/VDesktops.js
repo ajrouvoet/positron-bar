@@ -13,6 +13,10 @@ class VDesktops extends Component {
     };
   }
 
+  clickedDesktop(name) {
+    console.log("Woot, clicked " + name);
+  }
+
   render() {
     let { active_desktop, desktops } = this.props;
     return (
@@ -20,7 +24,10 @@ class VDesktops extends Component {
         {
           _.map(desktops, (name) => {
             let cls = cs({focus: active_desktop == name});
-            return <li className={cls} key={name}>{name}</li>;
+            return <li
+              className={cls}
+              onClick={() => this.clickedDesktop(name)}
+              key={name}>{name}</li>;
           })
         }
       </ol>

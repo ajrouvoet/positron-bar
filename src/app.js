@@ -6,6 +6,8 @@ import store from 'store';
 
 import VDesktops from 'containers/VDesktops';
 import Clock from 'components/Clock';
+import Volume from 'components/Volume';
+import Wifi from 'components/Wifi';
 
 window.$ = $;
 
@@ -20,6 +22,8 @@ class Bar extends Component {
         </div>
         <div id="sysinfo">
           <Clock />
+          <Volume />
+          <Wifi />
         </div>
       </div>
     );

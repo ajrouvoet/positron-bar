@@ -22,17 +22,19 @@ app.on('ready', () => {
   // Create the browser window.
   mainWindow = new BrowserWindow({
     width: 1920,
-    height: 25,
+    height: 35,
     frame: false,
-    id: "positron-bar",
-    transparent: true
+    id: "positron-bar"
   });
-  mainWindow.setPosition(0, 0);
+  mainWindow.setPosition(-1, -1);
 
   // and load the index.html of the app.
   mainWindow.loadURL('file://' + __dirname + '/index.html');
 
   // Open the DevTools.
+  mainWindow.on('keypress', function(e) {
+    console.log(e);
+  });
   mainWindow.webContents.openDevTools();
 
   // Emitted when the window is closed.

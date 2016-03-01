@@ -1,10 +1,15 @@
+$blue: #268bd2
+$base: #002b36
+$std-padding: 10px
+$bar-h: 35px
+
 *
   box-sizing: border-box
 
 p
   display: inline-block
   margin: 0px
-  height: 25px
+  height: $bar-h 
 
 body
   overflow: hidden
@@ -20,7 +25,7 @@ body
   top: 0px
   width: 100%
   height: 100%
-  background-color: #002b36
+  background-color: $base
   color: #B5C3C4
   opacity: 1
   height: 100%
@@ -33,11 +38,11 @@ body
     height: 100%
 
 #focus
-  width: 33%
+  width: 33.33%
 
 #desktops
   text-align: center
-  width: 33%
+  width: 33.33%
 
   ol
     list-style-type: none
@@ -54,44 +59,62 @@ body
     margin: 0px
     display: inline-block
     font-size: 11pt
-    height: 100%
+    height: $bar-h
+    line-height: $bar-h
+    vertical-align: middle
 
     &.focus
-      border-bottom: 3px solid #268bd2
+      border-bottom: 3px solid $blue
       font-weight: bold
 
 #sysinfo
-  width: 33%
+  width: 33.33%
   height: 100%
   display: table-row
   table-layout: fixed
 
-  > *
-    display: block
-    float: right
-    height: 100%
-    line-height: 25px
+
+.sysinfo
+  display: block
+  background-color: lighten($base, 3%)
+  border-left: 1px solid lighten($base, 10%)
+  padding:
+    left: $std-padding
+    right: $std-padding
+  float: right
+  height: $bar-h
+  line-height: $bar-h
+  vertical-align: middle
+
+  & > p, & > div
+    display: inline-block
+    height: $bar-h 
+    line-height: $bar-h
     vertical-align: middle
-    margin-left: 10px
 
-  .bar-indicator
-    width: 80px
-    height: 100%
-    position: relative
-
+$bar-indicator-h: 10px
 .bar-indicator
+  width: 80px
+  height: 100%
+  position: relative
+
   .bar-container
     position: absolute
     height: 10px
     width: 100%
-    top: 8px
-    border: 1px solid #586e75
+    top: ($bar-h - $bar-indicator-h)/2
+    border: 1px solid lighten($base, 20%)
 
   .bar-fill
     position: absolute
     left: 0px
     top: 0px
     height: 100%
-    background-color: #859900
+    background-color: lighten($base, 20%)
 
 #sysinfo > #volume
+
+#sysinfo > #clock
+  color: white
+  font-style: italic
+    

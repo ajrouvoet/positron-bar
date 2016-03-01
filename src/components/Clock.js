@@ -1,11 +1,13 @@
 import React, {Component, PropTypes} from 'react';
 import moment from 'moment';
+import SysInfo from './SysInfo';
 
 export default class DigitalClock extends Component {
 
   static get propTypes() {
     return {
-      format: PropTypes.string
+      formatTime: PropTypes.string,
+      formatDate: PropTypes.string
     };
   }
 
@@ -30,7 +32,9 @@ export default class DigitalClock extends Component {
 
   render() {
     return (
-        <p>{this.state.now.format(this.props.format)}</p>
+      <SysInfo>
+        <p id="clock">{this.state.now.format(this.props.format)}</p>
+      </SysInfo>
     );
   }
 }

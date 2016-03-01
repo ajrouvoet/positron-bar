@@ -42,7 +42,8 @@ function compileScripts(watch) {
     ],
     extensions: ['.js'],
     fullPaths: true,
-    sourceMaps: true
+    sourceMaps: true,
+    ignore: ['electron']
   });
 
   // browserify transforms
