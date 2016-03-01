@@ -33,3 +33,9 @@ class Bar extends Component {
 render(<Provider store={store}>
          <Bar />
        </Provider>, $("#react-inject")[0]);
+
+// demo
+const electron = window.require('electron');
+const remote = electron.remote;
+const exec = remote.require('child_process').exec;
+exec('notify-send -a Positon "Started!"');
