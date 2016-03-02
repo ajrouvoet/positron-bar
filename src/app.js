@@ -5,8 +5,9 @@ import {Provider, connect} from 'react-redux';
 import store from 'store';
 
 import VDesktops from 'containers/VDesktops';
+import Battery from 'containers/Battery';
+import Volume from 'containers/Volume';
 import Clock from 'components/Clock';
-import Volume from 'components/Volume';
 import Wifi from 'components/Wifi';
 
 window.$ = $;
@@ -23,6 +24,7 @@ class Bar extends Component {
         <div id="sysinfo">
           <Clock />
           <Volume />
+          <Battery highThreshold={80} lowThreshold={20} />
           <Wifi />
         </div>
       </div>
@@ -30,12 +32,21 @@ class Bar extends Component {
   }
 }
 
-render(<Provider store={store}>
-         <Bar />
-       </Provider>, $("#react-inject")[0]);
+render(
+  <Provider store={store}>
+    <Bar />
+  </Provider>,
+  $("#react-inject")[0]);
 
-// demo
-const electron = window.require('electron');
-const remote = electron.remote;
-const exec = remote.require('child_process').exec;
-exec('notify-send -a Positon "Started!"');
+// providers
+import batteryProvider from 'providers/battery';
+import volumeProvider from 'providers/volume';
+import * as actions from 'actions';
+
+function installProvider(name, provider, delay=1000) {
+  let interval = window.setInterval(() => provider(store.dispatch), delay);
+  store.dispatch(actions.providers.add(name, interval));
+}
+
+installProvider("battery", batteryProvider, 3000);
+installProvider("volume", volumeProvider, 3000);

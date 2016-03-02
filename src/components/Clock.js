@@ -13,7 +13,7 @@ export default class DigitalClock extends Component {
 
   static get defaultProps() {
     return {
-      format: "H:mm on MMM Qo YYYY"
+      format: "[<strong>]H:mm[</strong>] on [<strong>]MMMM Qo[</strong>]"
     };
   }
 
@@ -33,7 +33,7 @@ export default class DigitalClock extends Component {
   render() {
     return (
       <SysInfo>
-        <p id="clock">{this.state.now.format(this.props.format)}</p>
+        <p id="clock" dangerouslySetInnerHTML={{__html: this.state.now.format(this.props.format)}}></p>
       </SysInfo>
     );
   }

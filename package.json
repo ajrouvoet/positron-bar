@@ -36,7 +36,10 @@
   "dependencies": {
     "babel-polyfill": "^6.5.0",
     "classnames": "^2.2.3",
+    "google-auth-library": "^0.9.7",
+    "googleapis": "^2.1.7",
     "jquery": "^2.2.0",
+    "linux-battery": "^3.0.1",
     "lodash": "^4.5.1",
     "moment": "^2.11.2",
     "react": "^0.14.7",

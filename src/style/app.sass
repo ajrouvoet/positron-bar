@@ -1,5 +1,7 @@
 $blue: #268bd2
 $base: #002b36
+$red: #dc322f
+$green: #859900
 $std-padding: 10px
 $bar-h: 35px
 
@@ -66,6 +68,7 @@ body
     &.focus
       border-bottom: 3px solid $blue
       font-weight: bold
+      font-size: 14pt
 
 #sysinfo
   width: 33.33%
@@ -111,6 +114,20 @@ $bar-indicator-h: 10px
     top: 0px
     height: 100%
     background-color: lighten($base, 20%)
+
+  &.high
+    .bar-container
+      border: 1px solid $green
+
+    .bar-fill
+      background-color: $green
+
+  &.low
+    .bar-container
+      border: 1px solid $red
+
+    .bar-fill
+      background-color: $red
 
 #sysinfo > #volume
 

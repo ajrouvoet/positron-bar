@@ -9,7 +9,7 @@ export default class Bar extends Component {
   }
 
   render() {
-    return <div className="bar-indicator">
+    return <div className={`${this.props.className} bar-indicator`}>
       <div className="bar-container">
         <div style={{width: this.props.percentage + '%'}}className="bar-fill"></div>
       </div>
