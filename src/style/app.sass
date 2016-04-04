@@ -5,6 +5,12 @@ $green: #859900
 $std-padding: 10px
 $bar-h: 35px
 
+$fa-font-path: "fonts"
+@import font-awesome/scss/font-awesome
+
+.fa
+  margin-right: 8px
+
 *
   box-sizing: border-box
 
@@ -62,7 +68,7 @@ body
     vertical-align: middle
 
     &.focus
-      border-bottom: 3px solid $blue
+      border-bottom: 3px solid white
       font-weight: bold
       font-size: 14pt
 
@@ -109,7 +115,7 @@ $bar-indicator-h: 10px
     position: absolute
     height: 10px
     width: 100%
-    top: ($bar-h - $bar-indicator-h)/2
+    top: ($bar-h - $bar-indicator-h)/2 - 2
     border: 1px solid lighten($base, 20%)
 
   .bar-fill
@@ -128,10 +134,10 @@ $bar-indicator-h: 10px
 
   &.low
     .bar-container
-      border: 1px solid $red
+      border: 1px solid desaturate($red, 20%)
 
     .bar-fill
-      background-color: $red
+      background-color: desaturate($red, 20%)
 
 #sysinfo > #volume
 

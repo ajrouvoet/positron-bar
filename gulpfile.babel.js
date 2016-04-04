@@ -23,7 +23,7 @@ gulp.task('sass', function() {
         path.join(__dirname, 'node_modules/')    // libs
       ]
     }).on('error', sass.logError))
-    .pipe(gulp.dest(path.join(dist, 'css')));
+    .pipe(gulp.dest(path.join(dist, 'style')));
 });
 
 // initiates the scripts bundler
@@ -84,7 +84,9 @@ gulp.task('watch', function() {
 
 // copy the assets to the dist
 gulp.task('copy', function() {
-  return gulp.src([path.join(src, 'index.html')], {base: src})
+  return gulp.src([
+    path.join(src, 'index.html'),
+    path.join(src, 'style/fonts/**/*')], {base: src})
     .pipe(gulp.dest(dist));
 });
 

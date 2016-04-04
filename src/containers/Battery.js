@@ -27,7 +27,7 @@ class Battery extends Component {
 
     return (
       <SysInfo>
-        <p>Bat.&nbsp;</p>
+        <i className="fa fa-battery-full"></i>
         {
           _.map(batteries, (bat, id) => {
             let { level, state } = bat;
@@ -36,8 +36,7 @@ class Battery extends Component {
             level = level < 0 ? 0 : level;
 
             let clazz = cs(state, "battery-bar", {
-              low: level <= lowThreshold,
-              high: level >= lowThreshold,
+              low: level <= lowThreshold
             });
 
             return <Bar key={id} percentage={level} className={clazz} />;

@@ -17,7 +17,6 @@ class VDesktops extends Component {
   }
 
   clickedDesktop(index) {
-    console.log(index);
     childProcess.exec(`wmctrl -s ${index}`);
   }
 

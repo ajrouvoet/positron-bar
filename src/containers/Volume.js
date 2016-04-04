@@ -14,7 +14,7 @@ class Volume extends Component {
     let {level} = this.props;
 
     return <SysInfo>
-      <p>Vol.&nbsp;</p>
+      <i className="fa fa-volume-up" />
       <Bar percentage={level} />
     </SysInfo>;
   }

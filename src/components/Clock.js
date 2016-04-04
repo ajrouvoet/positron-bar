@@ -33,6 +33,7 @@ export default class DigitalClock extends Component {
   render() {
     return (
       <SysInfo>
+        <i className="fa fa-clock-o" />
         <p id="clock" dangerouslySetInnerHTML={{__html: this.state.now.format(this.props.format)}}></p>
       </SysInfo>
     );

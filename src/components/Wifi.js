@@ -5,7 +5,7 @@ import SysInfo from './SysInfo';
 export default class Wifi extends Component {
   render() {
     return <SysInfo>
-      <p>WIFI.&nbsp;</p>
+      <i className="fa fa-wifi" />
       <Bar percentage={60} />
       </SysInfo>;
   }
