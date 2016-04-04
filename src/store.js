@@ -1,7 +1,15 @@
 import {combineReducers, createStore} from 'redux';
 import * as actions from 'actions';
 
-function vdesktops(state=[], action) {
+function ewmh(state={}, action) {
+  switch(action.type) {
+    case (actions.ewmh.desktops.RECEIVE):
+      return _.extend({}, state, {
+        desktops: action.desktops
+      });
+    default:
+     return state;
+  }
   return state;
 }
 
@@ -38,7 +46,7 @@ function providers(state={}, action) {
 }
 
 export default createStore(combineReducers({
-  vdesktops,
+  ewmh,
   batteries,
   volume,
   providers

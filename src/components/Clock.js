@@ -13,7 +13,7 @@ export default class DigitalClock extends Component {
 
   static get defaultProps() {
     return {
-      format: "[<strong>]H:mm[</strong>] on [<strong>]MMMM Qo[</strong>]"
+      format: "[<strong>]H:mm[</strong>] on [<strong>]MMMM Do[</strong>]"
     };
   }
 

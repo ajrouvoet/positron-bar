@@ -35,9 +35,9 @@ class Battery extends Component {
             level = level > 100 ? 100 : level;
             level = level < 0 ? 0 : level;
 
-            let clazz = cs({
+            let clazz = cs(state, "battery-bar", {
               low: level <= lowThreshold,
-              high: level >= lowThreshold
+              high: level >= lowThreshold,
             });
 
             return <Bar key={id} percentage={level} className={clazz} />;

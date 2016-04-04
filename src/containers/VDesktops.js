@@ -4,17 +4,21 @@ import {connect} from 'react-redux';
 import _ from 'lodash';
 import cs from 'classnames';
 
+const electron = window.require('electron');
+const remote = electron.remote;
+const childProcess = remote.require('child_process');
+
 class VDesktops extends Component {
 
   static get propTypes() {
     return {
-      active_desktop: PropTypes.string,
-      desktops: PropTypes.arrayOf(PropTypes.string)
+      desktops: PropTypes.arrayOf(PropTypes.object)
     };
   }
 
-  clickedDesktop(name) {
-    console.log("Woot, clicked " + name);
+  clickedDesktop(index) {
+    console.log(index);
+    childProcess.exec(`wmctrl -s ${index}`);
   }
 
   render() {
@@ -22,12 +26,12 @@ class VDesktops extends Component {
     return (
       <ol>
         {
-          _.map(desktops, (name) => {
-            let cls = cs({focus: active_desktop == name});
+          _.map(desktops, (desktop) => {
+            let cls = cs({focus: desktop.current});
             return <li
               className={cls}
-              onClick={() => this.clickedDesktop(name)}
-              key={name}>{name}</li>;
+              key={desktop.index}
+              onClick={() => this.clickedDesktop(desktop.index)}>{desktop.name}</li>;
           })
         }
       </ol>
@@ -36,10 +40,9 @@ class VDesktops extends Component {
 }
 
 function select(state) {
-  return {
-    active_desktop: "Web",
-    desktops: ["SH", "Web", "Code", "PDF"]
-  };
+  let {ewmh: {desktops}} = state;
+
+  return {desktops};
 }
 
 export default connect(select)(VDesktops);

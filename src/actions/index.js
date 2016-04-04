@@ -32,3 +32,17 @@ export let battery = {
     };
   }
 };
+
+export let ewmh = {
+
+  desktops : {
+    RECEIVE: 'EWMH_DESKTOPS_RECEIVE',
+
+    receive: function(desktops) {
+      return {
+        type: ewmh.desktops.RECEIVE,
+        desktops
+      };
+    }
+  }
+};

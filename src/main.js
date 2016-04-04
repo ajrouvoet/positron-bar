@@ -23,8 +23,9 @@ app.on('ready', () => {
   mainWindow = new BrowserWindow({
     width: 1920,
     height: 35,
-    frame: false,
-    id: "positron-bar"
+    id: "positron-bar",
+    type: "dock",
+    frame: false
   });
   mainWindow.setPosition(-1, -1);
 
@@ -35,7 +36,7 @@ app.on('ready', () => {
   mainWindow.on('keypress', function(e) {
     console.log(e);
   });
-  // mainWindow.webContents.openDevTools();
+  mainWindow.webContents.openDevTools();
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function() {
