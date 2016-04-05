@@ -10,7 +10,7 @@ This will be streamlined in the near future, but for now:
 npm install
 ```
 
-###%# ... build the js modules:
+##### ... build the js modules:
 
 ```
 gulp build
