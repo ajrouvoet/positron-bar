@@ -7,13 +7,15 @@ export default class DigitalClock extends Component {
   static get propTypes() {
     return {
       formatTime: PropTypes.string,
-      formatDate: PropTypes.string
+      formatDate: PropTypes.string,
+      interval: PropTypes.number
     };
   }
 
   static get defaultProps() {
     return {
-      format: "[<strong>]H:mm[</strong>] on [<strong>]MMMM Do[</strong>]"
+      format: "[<strong>]H:mm[</strong>] on [<strong>]MMMM Do[</strong>]",
+      interval: 60000
     };
   }
 
@@ -26,7 +28,7 @@ export default class DigitalClock extends Component {
 
     window.setInterval(
       () => this.setState({ now : moment() }),
-      1000
+      props.interval 
     );
   }
 

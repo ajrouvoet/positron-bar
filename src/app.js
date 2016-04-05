@@ -7,6 +7,7 @@ import store from 'store';
 import VDesktops from 'containers/VDesktops';
 import Battery from 'containers/Battery';
 import Volume from 'containers/Volume';
+import Playing from 'containers/Playing';
 import Clock from 'components/Clock';
 import Wifi from 'components/Wifi';
 
@@ -25,9 +26,10 @@ class Bar extends Component {
         </div>
         <div id="sysinfo">
           <Clock />
-          <Volume />
           <Battery highThreshold={80} lowThreshold={20} />
+          <Volume />
           <Wifi />
+          <Playing />
         </div>
       </div>
     );
@@ -44,14 +46,17 @@ render(
 import batteryProvider from 'providers/battery';
 import volumeProvider from 'providers/volume';
 import {ewmhDesktopsProvider} from 'providers/ewmh';
+import {spotifyPlayingProvider} from 'providers/spotify';
 import * as actions from 'actions';
 
-// bundle some providers into single interval for sysinfo
 batteryProvider(store.dispatch)
 window.setInterval(() => batteryProvider(store.dispatch), 10000);
 
 volumeProvider(store.dispatch)
-window.setInterval(() => volumeProvider(store.dispatch), 1000);
+window.setInterval(() => {
+  volumeProvider(store.dispatch);
+  spotifyPlayingProvider(store.dispatch);
+}, 1000);
 
 // install the ewmhDesktopsProvider to run on substructureNotify events
 // from an x11 client

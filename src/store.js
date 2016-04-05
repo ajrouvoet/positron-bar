@@ -33,6 +33,17 @@ function volume(state={level: 50}, action) {
   }
 }
 
+function music(state={playing: undefined}, action) {
+  switch(action.type) {
+    case (actions.music.playing.RECEIVE):
+      return _.extend({}, state, {
+        playing: action.song
+      });
+  default:
+    return state;
+  }
+}
+
 function providers(state={}, action) {
   switch(action.type) {
     case (actions.providers.ADD):
@@ -49,5 +60,6 @@ export default createStore(combineReducers({
   ewmh,
   batteries,
   volume,
+  music,
   providers
 }));

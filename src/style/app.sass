@@ -13,6 +13,13 @@ $fa-font-path: "fonts"
 
 *
   box-sizing: border-box
+  -webkit-touch-callout: none
+  -webkit-user-select: none
+  -khtml-user-select: none
+  -moz-user-select: none
+  -ms-user-select: none
+  user-select: none
+  cursor: default
 
 p
   display: inline-block
@@ -59,8 +66,10 @@ body
 
   li
     text-align: center
-    width: 50px
     margin: 0px
+    padding:
+      left: 8px
+      right: 8px
     display: inline-block
     font-size: 11pt
     height: $bar-h
@@ -69,8 +78,6 @@ body
 
     &.focus
       border-bottom: 3px solid white
-      font-weight: bold
-      font-size: 14pt
 
 #sysinfo
   position: absolute
@@ -91,19 +98,27 @@ body
   line-height: $bar-h
   vertical-align: middle
 
-  & > p, & > div
+  & > p, & > div, & > img
     display: inline-block
     height: $bar-h 
     line-height: $bar-h
     vertical-align: middle
 
-.battery-bar
-  &.charging
-    .bar-container
-      border: 1px solid $green
+.playing
+  padding-left: 0px
 
-    .bar-fill
-      background-color: $green
+  img
+    height: 100%
+    margin-right: 8px
+
+.batteries
+  .fa:last-child
+    margin-right: 0px
+
+  .fa-battery-0, .fa-battery-1
+    color: $red
+  .fa-bolt
+    text-shadow: 0px 0px 3px black
 
 $bar-indicator-h: 10px
 .bar-indicator

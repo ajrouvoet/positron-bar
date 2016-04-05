@@ -46,3 +46,17 @@ export let ewmh = {
     }
   }
 };
+
+export let music = {
+
+  playing: {
+    RECEIVE: 'MUSIC_PLAYING_RECEIVE',
+
+    receive: function(song) {
+      return {
+        type: music.playing.RECEIVE,
+        song
+      };
+    }
+  }
+};

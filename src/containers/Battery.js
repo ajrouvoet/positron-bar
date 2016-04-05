@@ -25,9 +25,8 @@ class Battery extends Component {
 
     var {batteries, lowThreshold, highThreshold} = this.props;
 
-    return (
-      <SysInfo>
-        <i className="fa fa-battery-full"></i>
+
+    return <SysInfo className="batteries">
         {
           _.map(batteries, (bat, id) => {
             let { level, state } = bat;
@@ -35,14 +34,15 @@ class Battery extends Component {
             level = level > 100 ? 100 : level;
             level = level < 0 ? 0 : level;
 
-            let clazz = cs(state, "battery-bar", {
-              low: level <= lowThreshold
-            });
+            let index = Math.round(level / 100 * 4).toFixed();
 
-            return <Bar key={id} percentage={level} className={clazz} />;
+            return <span key={id} className="fa-stack">
+              <i className={`fa fa-battery-${index} fa-stack-1x`}></i>
+              { state.toLowerCase() === 'charging' ? <i className={`fa fa-bolt fa-stack-1x`}></i> : false }
+            </span>
           })
         }
-      </SysInfo>);
+      </SysInfo>;
   }
 }
 

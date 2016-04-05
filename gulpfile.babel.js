@@ -90,11 +90,15 @@ gulp.task('copy', function() {
     .pipe(gulp.dest(dist));
 });
 
-// run the tasks and start watching by default
-gulp.task('default', function() {
-  gutil.log(">> Building & standing watch for changes...");
+gulp.task('build', function() {
   gulp.start('sass');
   gulp.start('copy');
   compileScripts(false);
+});
+
+// run the tasks and start watching by default
+gulp.task('default', function() {
+  gutil.log(">> Building & standing watch for changes...");
+  gulp.start('build');
   gulp.start('watch');
 });
