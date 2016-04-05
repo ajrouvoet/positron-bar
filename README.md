@@ -14,6 +14,7 @@ npm install
 
 ```
 gulp build
+./node_modules/.bin/babel src/main.js -o dist/main.js
 ```
 
 ##### ... and run it:
