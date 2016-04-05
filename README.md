@@ -2,24 +2,23 @@
 
 ## Getting started
 
-Set stuff up:
+This will be streamlined in the near future, but for now:
+
+#### Install the dependencies
 
 ```bash
 npm install
-npm run build
 ```
 
-Run as follows:
+#### ... build the js modules:
 
 ```
-npm run start
+gulp build
 ```
 
-## Bspwm
+##### ... and run it:
 
-You need the following to make the bar stick:
-
-```bash
-# ~/.config/bspwm/bspwmrc
-bspc rule -a positron-bar floating=on border=off sticky=true
 ```
+npm start
+```
+
