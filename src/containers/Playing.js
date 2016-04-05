@@ -26,7 +26,6 @@ class Playing extends Component {
 }
 
 function select(state) {
-  console.log(state);
   return {
     song: state.music.playing
   };

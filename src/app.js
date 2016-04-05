@@ -4,72 +4,13 @@ import $ from 'jquery';
 import {Provider, connect} from 'react-redux';
 import store from 'store';
 
-import VDesktops from 'containers/VDesktops';
-import Battery from 'containers/Battery';
-import Volume from 'containers/Volume';
-import Playing from 'containers/Playing';
-import Clock from 'components/Clock';
-import Wifi from 'components/Wifi';
-
-const electron = window.require('electron');
-const remote = electron.remote;
-const x11 = remote.require('x11');
-
 window.$ = $;
 
-class Bar extends Component {
-  render() {
-    return (
-      <div id="content">
-        <div id="desktops">
-          <VDesktops />
-        </div>
-        <div id="sysinfo">
-          <Clock />
-          <Battery highThreshold={80} lowThreshold={20} />
-          <Volume />
-          <Wifi />
-          <Playing />
-        </div>
-      </div>
-    );
-  }
-}
+import installProviders from 'config/providers';
+import Bar from 'config/Bar';
 
-render(
-  <Provider store={store}>
-    <Bar />
-  </Provider>,
-  $("#react-inject")[0]);
+// init the providers
+installProviders(store);
 
-// providers
-import batteryProvider from 'providers/battery';
-import volumeProvider from 'providers/volume';
-import {ewmhDesktopsProvider} from 'providers/ewmh';
-import {spotifyPlayingProvider} from 'providers/spotify';
-import * as actions from 'actions';
-
-batteryProvider(store.dispatch)
-window.setInterval(() => batteryProvider(store.dispatch), 10000);
-
-volumeProvider(store.dispatch)
-window.setInterval(() => {
-  volumeProvider(store.dispatch);
-  spotifyPlayingProvider(store.dispatch);
-}, 1000);
-
-// install the ewmhDesktopsProvider to run on substructureNotify events
-// from an x11 client
-// start with initial info load
-ewmhDesktopsProvider(store.dispatch);
-x11.createClient(function(err, display) {
-  if (err) {
-    throw err;
-  }
-  let X = display.client;
-  let root = display.screen[0].root;
-  X.ChangeWindowAttributes(root, { eventMask: x11.eventMask.SubstructureNotify|x11.eventMask.SubstructurRedirect});
-  X.on('event', (ev) => ewmhDesktopsProvider(store.dispatch));
-
-  x11.createClient(function(err, display) {});
-});
+// render the bar
+render(<Provider store={store}><Bar /></Provider>, $("#react-inject")[0]);
