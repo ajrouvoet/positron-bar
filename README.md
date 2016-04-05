@@ -4,13 +4,13 @@
 
 This will be streamlined in the near future, but for now:
 
-#### Install the dependencies
+##### Install the dependencies
 
 ```bash
 npm install
 ```
 
-#### ... build the js modules:
+###%# ... build the js modules:
 
 ```
 gulp build
