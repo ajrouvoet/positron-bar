@@ -28,6 +28,12 @@ gulp build
 npm start
 ```
 
+## Configuration
+
+You configure the bar by modifying the javascript in `src/config/**`. 
+In `src/config/Bar.js` you can modify the fields that appear in your bar by modifying what gets returned from it's `render()` method.
+In `src/config/providers.js` you can modify the data providers. E.g. if you don't use spotify, remove it from there and the bar won't try to subscribe to dbus events from spotify.
+
 ## How it works
 
 The bar is essentially just a browser window (powered by electron.js).
