@@ -12,8 +12,17 @@ This will be streamlined in the near future, but for now:
 npm install
 ```
 
+##### External deps
+
+1. `wmctrl`
 To query the dekstops, it uses `wmctrl`. Make sure it's installed on your system.
 Your WM should support EWMH in order for it to work (you can verify by checking whether `wmctrl -d` outputs your desktosp).
+
+2. `upower`
+For battery info.
+
+3. `amixer`
+For master volume info.
 
 ##### ... build the js modules:
 
