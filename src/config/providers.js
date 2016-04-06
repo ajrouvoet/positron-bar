@@ -5,7 +5,7 @@ const x11 = remote.require('x11');
 import batteryProvider from 'providers/battery';
 import volumeProvider from 'providers/volume';
 import {ewmhDesktopsProvider} from 'providers/ewmh';
-import {spotifyPlayingProvider} from 'providers/spotify';
+import * as spotify from 'providers/spotify';
 import * as actions from 'actions';
 
 export default function installProviders(store) {
@@ -18,8 +18,9 @@ export default function installProviders(store) {
   window.setInterval(() => batteryProvider(store.dispatch), 10000);
   window.setInterval(() => {
     volumeProvider(store.dispatch);
-    spotifyPlayingProvider(store.dispatch);
   }, 1000);
+
+  spotify.subscribe(store.dispatch);
 
   // install the ewmhDesktopsProvider to run on substructureNotify events from the X server
   x11.createClient((err, display) => {

@@ -36,6 +36,7 @@
   "dependencies": {
     "babel-polyfill": "^6.5.0",
     "classnames": "^2.2.3",
+    "dbus-native": "^0.2.0",
     "ewmh": "^0.3.0",
     "font-awesome": "^4.5.0",
     "google-auth-library": "^0.9.7",

@@ -19,6 +19,7 @@ class Playing extends Component {
       
       return <SysInfo className="playing">
         <img src={song.art_url} />
+        <p>{song.artists[0] || ""}</p>&nbsp;-&nbsp;
         <p>{song.title}</p>
       </SysInfo>;
     } else { return false };
