@@ -12,6 +12,9 @@ This will be streamlined in the near future, but for now:
 npm install
 ```
 
+To query the dekstops, it uses `wmctrl`. Make sure it's installed on your system.
+Your WM should support EWMH in order for it to work (you can verify by checking whether `wmctrl -d` outputs your desktosp).
+
 ##### ... build the js modules:
 
 ```
