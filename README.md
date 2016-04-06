@@ -1,5 +1,7 @@
 # Positron Bar
 
+![Screenshot](./docs/screenshots/april.png)
+
 ## Getting started
 
 This will be streamlined in the near future, but for now:
