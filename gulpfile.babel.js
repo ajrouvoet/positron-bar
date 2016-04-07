@@ -9,22 +9,11 @@ let gulp = require('gulp'),
     watchify = require('watchify'),
     browserify = require('browserify'),
     transform = require('vinyl-transform'),
+    babel = require('gulp-babel'),
     babelify = require('babelify');
 
 let src = path.join(__dirname, 'src');
 let dist = path.join(__dirname, 'dist');
-
-gulp.task('sass', function() {
-  gulp.src('./src/style/app.sass')
-    .pipe(sass({
-      includePaths : [
-        path.join(src, 'style/sass'), // sass
-        path.join(src, 'style/css'),  // css
-        path.join(__dirname, 'node_modules/')    // libs
-      ]
-    }).on('error', sass.logError))
-    .pipe(gulp.dest(path.join(dist, 'style')));
-});
 
 // initiates the scripts bundler
 function compileScripts(watch) {
@@ -72,28 +61,50 @@ function compileScripts(watch) {
   return rebundle();
 }
 
-gulp.task('watch', function() {
+gulp.task('build:main', function() {
+	return gulp.src('src/main.js')
+		.pipe(babel({presets: ['es2015']}))
+		.pipe(gulp.dest('dist'));
+});
+
+gulp.task('build:style', function() {
+  gulp.src('./src/style/app.sass')
+    .pipe(sass({
+      includePaths : [
+        path.join(src, 'style/sass'), // sass
+        path.join(src, 'style/css'),  // css
+        path.join(__dirname, 'node_modules/')    // libs
+      ]
+    }).on('error', sass.logError))
+    .pipe(gulp.dest(path.join(dist, 'style')));
+});
+
+gulp.task('build:watch', function() {
   function initWatch(files, task) {
     gulp.start(task);
     gulp.watch(files, [task]);
   }
 
   compileScripts(true);
-  initWatch(['./src/**/*.sass', './src/**/*.css'], 'sass');
+  initWatch(['./src/**/*.sass', './src/**/*.css'], 'build:style');
 });
 
-// copy the assets to the dist
-gulp.task('copy', function() {
+gulp.task('build:assets', function() {
   return gulp.src([
     path.join(src, 'index.html'),
     path.join(src, 'style/fonts/**/*')], {base: src})
     .pipe(gulp.dest(dist));
 });
 
-gulp.task('build', function() {
-  gulp.start('sass');
-  gulp.start('copy');
+gulp.task('build:app', function() {
   compileScripts(false);
+});
+
+gulp.task('build', function() {
+  gulp.start('build:style');
+  gulp.start('build:assets');
+  gulp.start('build:main');
+  gulp.start('build:app');
 });
 
 // run the tasks and start watching by default

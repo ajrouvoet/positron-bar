@@ -27,8 +27,7 @@ For master volume info.
 ##### ... build the js modules:
 
 ```
-gulp build
-./node_modules/.bin/babel src/main.js -o dist/main.js
+npm run-script build
 ```
 
 ##### ... and run it:
