@@ -4,7 +4,7 @@ import * as actions from 'actions';
 const battery = remote.require('linux-battery');
 import _ from 'lodash';
 
-export default function batteryProvider(dispatch) {
+export function get(cb) {
   battery().then((info) => {
     let batteries = _(info).map((bat) => {
       return {
@@ -13,6 +13,14 @@ export default function batteryProvider(dispatch) {
       };
     }).value();
 
-    dispatch(actions.battery.receive(batteries));
+    cb(batteries);
   });
+}
+
+export function subscribe(cb, interval=10000) {
+  // initial
+  get(cb);
+
+  // refresh
+  window.setInterval(() => get(cb), interval);
 }

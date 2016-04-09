@@ -46,15 +46,14 @@ function subscribeSpotifyStartOnce(bus, cb) {
   });
 }
 
-export function subscribe(dispatch) {
+export function subscribe(cb) {
   let bus = dbus.sessionBus();
-  let onNext = (data) => dispatch(actions.music.playing.receive(data));
 
   // try and subscribe to spotify
   // if spotify is not yet running, this function throws and
   // we listen for it to start and then subscribe
   subscribePropertiesChanged(bus,
-    (err) => subscribeSpotifyStartOnce(bus, () => subscribePropertiesChanged(bus, () => {}, onNext)),
-    onNext
+    (err) => subscribeSpotifyStartOnce(bus, () => subscribePropertiesChanged(bus, () => {}, cb)),
+    cb
   );
 }

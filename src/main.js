@@ -29,13 +29,13 @@ app.on('ready', () => {
   });
   mainWindow.setPosition(0, 0);
 
+  // the store should be global to the app
+  global.redux = {"store": null};
+
   // and load the index.html of the app.
   mainWindow.loadURL('file://' + __dirname + '/index.html');
 
   // Open the DevTools.
-  mainWindow.on('keypress', function(e) {
-    console.log(e);
-  });
   mainWindow.webContents.openDevTools();
 
   // Emitted when the window is closed.

@@ -1,3 +1,6 @@
+const electron = window.require('electron');
+const remote = electron.remote;
+
 import React, {Component, PropTypes} from 'react';
 import SysInfo from 'components/SysInfo';
 import {connect} from 'react-redux';

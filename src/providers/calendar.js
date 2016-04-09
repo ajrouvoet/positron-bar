@@ -62,10 +62,6 @@ function authorize(callback) {
 /**
  * Get and store new token after prompting for user authorization, and then
  * execute the given callback with the authorized OAuth2 client.
- *
- * @param {google.auth.OAuth2} oauth2Client The OAuth2 client to get token for.
- * @param {getEventsCallback} callback The callback to call with the authorized
- *     client.
  */
 function getNewToken(oauth2Client, callback) {
   let authUrl = oauth2Client.generateAuthUrl({
@@ -86,7 +82,7 @@ function getNewToken(oauth2Client, callback) {
       authWin.close();
 
       let code = matches[1];
-      oauth2Client.getToken(code, function(err, token) {
+      oauth2Client.getToken(code, (err, token) => {
         if (err) {
           console.error('Error while trying to retrieve access token', err);
           return;
@@ -131,10 +127,16 @@ function loadTodaysEvents(auth, callback) {
   });
 }
 
-export function subscribe(dispatch) {
+export function load(cb) {
   // Authorize a client with the loaded credentials, then call the
   // Google Calendar API.
-  authorize((auth) => loadTodaysEvents(auth, (items) => {
-    dispatch(actions.calendar.todaysEvents.receive(items));
-  }));
+  authorize((auth) => loadTodaysEvents(auth, cb));
+}
+
+export function subscribe(cb, interval=10*60*1000) {
+  // initial load
+  load(cb);
+
+  // update every 10 minutes
+  window.setInterval(() => load(cb), interval);
 }

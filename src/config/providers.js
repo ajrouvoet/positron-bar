@@ -2,27 +2,25 @@ const electron = window.require('electron');
 const remote = electron.remote;
 const x11 = remote.require('x11');
 
-import batteryProvider from 'providers/battery';
-import volumeProvider from 'providers/volume';
 import {ewmhDesktopsProvider} from 'providers/ewmh';
+import * as battery from 'providers/battery';
 import * as spotify from 'providers/spotify';
 import * as calendar from 'providers/calendar';
+import * as volume from 'providers/volume';
 import * as actions from 'actions';
 
 export default function installProviders(store) {
+  let dispatch = store.dispatch;
+
   // initial data loading
-  batteryProvider(store.dispatch)
-  volumeProvider(store.dispatch)
   ewmhDesktopsProvider(store.dispatch);
 
   // polling
-  window.setInterval(() => batteryProvider(store.dispatch), 10000);
-  window.setInterval(() => {
-    volumeProvider(store.dispatch);
-  }, 1000);
+  battery.subscribe((data) => dispatch(actions.battery.receive(data)));
+  volume.subscribe((data) => dispatch(actions.volume.receive(data)));
 
-  spotify.subscribe(store.dispatch);
-  calendar.subscribe(store.dispatch);
+  spotify.subscribe((data) => dispatch(actions.music.playing.receive(data)));
+  calendar.subscribe((items) => dispatch(actions.calendar.todaysEvents.receive(items)));
 
   // install the ewmhDesktopsProvider to run on substructureNotify events from the X server
   x11.createClient((err, display) => {
