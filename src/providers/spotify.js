@@ -11,7 +11,6 @@ function subscribePropertiesChanged(bus, onError, onNext) {
     '/org/mpris/MediaPlayer2',
     'org.freedesktop.DBus.Properties',
     (err, iface) => {
-      console.log("?", err, iface);
       if(err) {
         onError(err || "Spotify doesn't seem to be running yet");
         return;
