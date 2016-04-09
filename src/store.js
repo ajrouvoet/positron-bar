@@ -44,13 +44,12 @@ function music(state={playing: undefined}, action) {
   }
 }
 
-function providers(state={}, action) {
+function calendar(state={todaysEvents: []}, action) {
   switch(action.type) {
-    case (actions.providers.ADD):
-      return {
-        [action.name]: action.interval
-      };
-
+    case (actions.calendar.todaysEvents.RECEIVE):
+      return _.extend({}, state, {
+        todaysEvents: action.events
+      });
     default:
       return state;
   }
@@ -61,5 +60,5 @@ export default createStore(combineReducers({
   batteries,
   volume,
   music,
-  providers
+  calendar
 }));

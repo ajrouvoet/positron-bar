@@ -92,6 +92,7 @@ gulp.task('build:watch', function() {
 gulp.task('build:assets', function() {
   return gulp.src([
     path.join(src, 'index.html'),
+    path.join(src, '.credentials/**/*.json'),
     path.join(src, 'style/fonts/**/*')], {base: src})
     .pipe(gulp.dest(dist));
 });

@@ -60,3 +60,17 @@ export let music = {
     }
   }
 };
+
+export let calendar = {
+  
+  todaysEvents: {
+    RECEIVE: 'CALENDAR_TODAY_RECEIVE',
+
+    receive: (events) => {
+      return {
+        type: calendar.todaysEvents.RECEIVE,
+        events
+      };
+    }
+  }
+};

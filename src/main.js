@@ -27,7 +27,7 @@ app.on('ready', () => {
     type: "dock",
     frame: false
   });
-  mainWindow.setPosition(-1, -1);
+  mainWindow.setPosition(0, 0);
 
   // and load the index.html of the app.
   mainWindow.loadURL('file://' + __dirname + '/index.html');

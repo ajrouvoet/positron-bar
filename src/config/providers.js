@@ -6,6 +6,7 @@ import batteryProvider from 'providers/battery';
 import volumeProvider from 'providers/volume';
 import {ewmhDesktopsProvider} from 'providers/ewmh';
 import * as spotify from 'providers/spotify';
+import * as calendar from 'providers/calendar';
 import * as actions from 'actions';
 
 export default function installProviders(store) {
@@ -21,6 +22,7 @@ export default function installProviders(store) {
   }, 1000);
 
   spotify.subscribe(store.dispatch);
+  calendar.subscribe(store.dispatch);
 
   // install the ewmhDesktopsProvider to run on substructureNotify events from the X server
   x11.createClient((err, display) => {
